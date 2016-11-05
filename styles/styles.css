@@ -1,0 +1,45 @@
+label {
+  width: 100%;
+}
+
+.ip-input {
+  display: inline-block;
+  width: 70%;
+  margin-right: 32px;
+}
+
+.node-status {
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  margin-top: 30px;
+}
+
+.node-status h4 {
+  border-bottom: 1px solid;
+  padding-bottom: 5px;
+}
+
+.node-status .icon {
+  background-color: rgb(230,231,232);
+  padding: 6px;
+  color: rgb(116,182,204);
+  line-height: 0;
+  vertical-align: unset;
+  float: right;
+  height: 30px;
+  border-radius: 3px;
+  width: 30px;
+  text-align: center;
+}
+
+.node-status .icon::before {
+  vertical-align: middle;
+}
+
+.node-status li {
+  margin-bottom: 5px;
+}
+
+.nodes-empty {
+  color: gray;
+}
