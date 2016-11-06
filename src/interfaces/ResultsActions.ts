@@ -42,9 +42,8 @@ function requestNextResults() {
     return (dispatch:any/*, getState:any*/) => {
         dispatch(requestResultsAction());
 
-
-
-        return fetch(location.protocol + '//localhost:3001?mediafileid=22', {
+        var url = location.hostname === "localhost" ? "http://localhost:3001" : "https://"+location.hostname+"-be";
+        return fetch(url + '/?mediafileid=22', {
             headers: {
                 "Content-Type" : "text/plain"
             }
