@@ -38,12 +38,12 @@ function receiveRawResultsAction(text: string) {
     return receiveResultsAction(results);
 }
 
-function requestNextResults() {
-    return (dispatch:any/*, getState:any*/) => {
+function requestNextResults(mediafileid:number) {
+    return (dispatch:any) => {
         dispatch(requestResultsAction());
 
         var url = location.hostname === "localhost" ? "http://localhost:3001" : "https://minnesota-election-2016-be.herokuapp.com";
-        return fetch(url + '/?mediafileid=22', {
+        return fetch(url + '/?mediafileid='+mediafileid, {
             headers: {
                 "Content-Type" : "text/plain"
             }
@@ -56,12 +56,12 @@ function requestNextResults() {
 }
 
 /* Log Lines dispatch */
-export function requestResults(): any {
-    return (dispatch:any, getState:any) => {
-        dispatch(requestNextResults());
+export function requestResults(mediafileid:number): any {
+    return (dispatch:any) => {
+        dispatch(requestNextResults(mediafileid));
 
         const timerId = setInterval(() => {
-            dispatch(requestNextResults())
+            dispatch(requestNextResults(mediafileid))
         }, 60000);
     }
 }

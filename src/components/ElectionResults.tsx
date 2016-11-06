@@ -7,14 +7,14 @@ import { AppState } from '../interfaces/AppState';
 import { ResultsState } from '../interfaces/ResultsState';
 import { requestResults } from '../interfaces/ResultsActions';
 
-export class ElectionResults extends React.Component<{results: ResultsState, onStart: () => void }, {  }> {
+export class ElectionResults extends React.Component<{results: ResultsState, onStart: (mediafileid:number) => void }, {  }> {
   constructor() {
     super();
   }
 
   handleSubmit (e: any) {
     e.preventDefault();
-    this.props.onStart();
+    this.props.onStart(30);
   }
 
   render () {
@@ -41,8 +41,8 @@ function mapStateToProps (state: AppState) {
 
 function mapDispatchToProps (dispatch:any, ownProps:any) {
   return {
-    onStart: function () {
-      store.dispatch(requestResults());
+    onStart: function (mediafileid:number) {
+      store.dispatch(requestResults(mediafileid));
     }
   }
 }
