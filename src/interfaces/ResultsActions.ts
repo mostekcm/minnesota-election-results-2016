@@ -44,7 +44,7 @@ function requestNextResults() {
 
 
 
-        return fetch(location.protocol + "//" + location.hostname + ':3001?mediafileid=22', {
+        return fetch(location.protocol + '//localhost:3001?mediafileid=22', {
             headers: {
                 "Content-Type" : "text/plain"
             }
