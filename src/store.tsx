@@ -1,11 +1,10 @@
 import * as redux from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
-import { appliance } from './reducers/appliance';
-import { lsblk } from './reducers/lsblk';
+import { results } from './reducers/results';
 
 const reducer = redux.combineReducers({ 
-  appliance, lsblk
+  results
 });
 
 export const store = redux.createStore(reducer,

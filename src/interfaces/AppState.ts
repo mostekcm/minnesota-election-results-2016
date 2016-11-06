@@ -1,7 +1,5 @@
-import { ApplianceState } from './ApplianceState';
-import { LsblkState } from './LsblkState';
+import { ResultsState } from './ResultsState';
 
 export interface AppState {
-  appliance: ApplianceState;
-  lsblk: LsblkState;
+  results: ResultsState;
 };
