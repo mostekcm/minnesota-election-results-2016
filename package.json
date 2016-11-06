@@ -12,6 +12,9 @@
   },
   "author": "mostekcm",
   "license": "MIT",
+  "engines": {
+    "node": "4.1.1"
+  },
   "dependencies": {
     "@types/fixed-data-table": "^0.6.30",
     "@types/isomorphic-fetch": "0.0.31",
