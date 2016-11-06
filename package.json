@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "./node_modules/webpack/bin/webpack.js && node index.js",
     "preview": "open ./index.html"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "mostekcm",
+  "license": "MIT",
   "dependencies": {
     "@types/fixed-data-table": "^0.6.30",
     "@types/isomorphic-fetch": "0.0.31",
@@ -33,7 +34,9 @@
     "redux-thunk": "^2.1.0",
     "request": "^2.78.0",
     "sorty": "^1.2.2",
-    "source-map-loader": "^0.1.5"
+    "source-map-loader": "^0.1.5",
+    "typescript": "^2.0.7",
+    "webpack": "^1.13.3"
   },
   "devDependencies": {
     "source-map-loader": "^0.1.5",
