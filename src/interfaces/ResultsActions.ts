@@ -57,11 +57,11 @@ function requestNextResults() {
 
 /* Log Lines dispatch */
 export function requestResults(): any {
-    return (dispatch:any) => {
-        dispatch(requestResultsAction());
+    return (dispatch:any, getState:any) => {
+        dispatch(requestNextResults());
 
         const timerId = setInterval(() => {
             dispatch(requestNextResults())
-        }, 5000);
+        }, 60000);
     }
 }

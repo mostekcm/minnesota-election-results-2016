@@ -22,7 +22,7 @@ export class ElectionResults extends React.Component<{results: ResultsState, onS
       <div className={"col-md-12 setup-appliance" + ' fade-slide-down'} >
         <form onSubmit={this.handleSubmit.bind(this)}>
           <fieldset>
-            <button className="btn btn-success">ElectionResults</button>
+            <button className="btn btn-success" disabled={this.props.results.status !== "uninitialized"}>ElectionResults</button>
           </fieldset>
         </form>
         <div className={'col-md-12'}>
