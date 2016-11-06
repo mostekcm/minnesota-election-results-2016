@@ -2,7 +2,7 @@ var express = require('express');
 var request = require('request');
 var cors = require('cors');
 
-var whitelist = ['http://localhost:3000', 'http://some heroku origin'];
+var whitelist = ['http://localhost:3000', 'https://minnesota-election-2016.herokuapp.com/'];
 var corsOptions = {
     origin: function(origin, callback){
         var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
