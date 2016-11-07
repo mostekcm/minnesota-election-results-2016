@@ -23,7 +23,6 @@ export class ElectionResults extends React.Component<{results: ResultsState, onS
   }
 
   handlePageSelect(val: any) {
-    console.log("Carlos: " +JSON.stringify(val));
     this.setState({mediafileid: val.value, selectValue: val.value });
   }
 

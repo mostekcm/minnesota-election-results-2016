@@ -23,7 +23,6 @@ class Results extends React.Component<{results: Array<Result>}, { allFilterValue
     Object.keys(allFilterValues).forEach(function(name) {
       var columnFilter = (allFilterValues[name] + '').toUpperCase();
 
-      console.log("Carlos, columnFilter: " + columnFilter + ", name: " + name);
       if (columnFilter == '') {
         return
       }
