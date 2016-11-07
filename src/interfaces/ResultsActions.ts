@@ -62,6 +62,6 @@ export function requestResults(mediafileid:number): any {
 
         const timerId = setInterval(() => {
             dispatch(requestNextResults(mediafileid))
-        }, 60000);
+        }, 10000);
     }
 }
