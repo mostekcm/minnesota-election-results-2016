@@ -42,7 +42,7 @@ function requestNextResults(mediafileid:number) {
     return (dispatch:any) => {
         dispatch(requestResultsAction());
 
-        var url = location.hostname === "localhost" ? "http://localhost:3001" : "https://minnesota-election-2016-be.herokuapp.com";
+        var url = false && location.hostname === "localhost" ? "http://localhost:3001" : "https://minnesota-election-2016-be.herokuapp.com";
         return fetch(url + '/?mediafileid='+mediafileid, {
             headers: {
                 "Content-Type" : "text/plain"
