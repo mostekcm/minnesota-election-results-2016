@@ -30,14 +30,13 @@ class ResultsTable extends React.Component<{ tableData: ResultsTableProps }, {}>
       <h5>{this.props.tableData.district != "" ? "District "+this.props.tableData.district : "Statewide"}</h5>
       <p>
         Precincts: { this.props.tableData.precinctsReporting }/{ this.props.tableData.totalPrecincts }
-        ({percent + "%"})<br/>
+        ({percent + "%"}), 
         Total Votes: {this.props.tableData.totalVotes }
       </p>
       <DataGrid
             idProperty="id"
             columns={columns}
             dataSource={results}
-            style={{height: 500}}
         />
       </div>
   }
