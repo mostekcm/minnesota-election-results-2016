@@ -18,9 +18,9 @@ class ResultsTable extends React.Component<{ tableData: ResultsTableProps }, {}>
     var results = this.props.tableData.results ? this.props.tableData.results : [];
 
     const columns: Array<any> = [
-      { name: 'partyAbbreviation', title: 'Pty', width: 30},
+      { name: 'partyAbbreviation', title: 'Pty', width: 50},
       { name: 'candidateName', title: 'Candidate'},
-      { name: 'percentageOfVotesForCandidate', title: 'Percent', width: 75},
+      { name: 'percentageOfVotesForCandidate', title: 'Percent', width: 60},
       { name: 'votesForCandidate', title: 'Votes', width: 75}
     ];
 
@@ -30,7 +30,7 @@ class ResultsTable extends React.Component<{ tableData: ResultsTableProps }, {}>
       <h5>{this.props.tableData.district != "" ? "District "+this.props.tableData.district : "Statewide"}</h5>
       <p>
         Precincts: { this.props.tableData.precinctsReporting }/{ this.props.tableData.totalPrecincts }
-        ({percent + "%"}), 
+        ({percent + "%"}),
         Total Votes: {this.props.tableData.totalVotes }
       </p>
       <DataGrid
