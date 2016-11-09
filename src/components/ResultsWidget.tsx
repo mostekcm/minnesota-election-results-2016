@@ -112,6 +112,10 @@ class Results extends React.Component<{results: Array<Result>}, { districtFilter
     this.setState({districtFilter:event.target.value});
   }
 
+  handleSubmit(event:any) {
+      event.preventDefault();
+  }
+
   render () {
     var updateResults = this.updateFilter();
 
@@ -119,7 +123,7 @@ class Results extends React.Component<{results: Array<Result>}, { districtFilter
         tableData={updateResults.data[key]} />);
 
     return <div className={"row"}>
-      <form onSubmit={function() { return false; }}>
+      <form onSubmit={this.handleSubmit}>
         <label htmlFor={"districtFilter"}>District Filter</label>
         <input type="string" placeholder="Comma separated list of districts" id="districtFilter" onChange={this.handleFilter} width={"100%"}/>
       </form>
