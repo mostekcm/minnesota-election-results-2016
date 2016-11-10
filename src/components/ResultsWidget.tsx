@@ -5,7 +5,7 @@ import { ResultsState } from '../interfaces/ResultsState';
 import DataGrid = require('react-datagrid');
 
 interface ResultsTableProps {
-  district: string;
+  districtOrCounty: string;
   totalVotes: number;
   precinctsReporting: number;
   totalPrecincts: number;
@@ -27,7 +27,7 @@ class ResultsTable extends React.Component<{ tableData: ResultsTableProps }, {}>
     const percent = 100*this.props.tableData.precinctsReporting/this.props.tableData.totalPrecincts;
 
     return <div className={"row"}>
-      <h5>{this.props.tableData.district != "" ? "District "+this.props.tableData.district : "Statewide"}</h5>
+      <h5>{this.props.tableData.districtOrCounty != "" ? "District "+this.props.tableData.districtOrCounty : "Statewide"}</h5>
       <p>
         Precincts: { this.props.tableData.precinctsReporting }/{ this.props.tableData.totalPrecincts }
         ({percent + "%"}),
@@ -42,21 +42,24 @@ class ResultsTable extends React.Component<{ tableData: ResultsTableProps }, {}>
   }
 }
 
-class Results extends React.Component<{results: Array<Result>}, { districtFilter:any }> {
+class Results extends React.Component<{results: Array<Result>}, { districtFilter:any, useCounty:boolean }> {
 
   constructor(props:{results: Array<Result>}) {
     super(props);
-    this.state = { districtFilter: "" };
+    this.state = { districtFilter: "", useCounty: false };
     this.handleFilter = this.handleFilter.bind(this);
+    this.splitDataByDistrict = this.splitDataByDistrict.bind(this);
   }
 
   updateFilter() {
     //reset data to original data-array
     var data = this.props.results;
+    this.state.useCounty = this.state.useCounty || (data.length > 0 && this.props.results[0].countyId && !this.props.results[0].district);
+    console.log("Carlos, county: "+this.state.useCounty);
     var columnsBeingFiltered = "";
 
     //go over all filters and apply them
-    var name = "district";
+    var name = this.state.useCounty ? "countyId" : "district";
     var columnFilter = (this.state.districtFilter+'').toUpperCase();
     if (columnFilter != '') {
       var columnFilters = columnFilter.split(',');
@@ -92,24 +95,26 @@ class Results extends React.Component<{results: Array<Result>}, { districtFilter
 
   splitDataByDistrict(results:Array<Result>) : { [key:string] : ResultsTableProps } {
     var props: { [key:string] : ResultsTableProps } = {};
+    var me = this;
     results.forEach(function(result) {
-      if (!(result.district in props)) {
-        props[result.district] = {
+      var countyOrDistrict = (me.state.useCounty ? result.countyId : result.district);
+      if (!(countyOrDistrict in props)) {
+        props[countyOrDistrict] = {
           totalPrecincts: result.totalNumberOfPrecinctsVotingForTheOffice,
           precinctsReporting: result.numberOfPrecinctsReporting,
-          district: result.district,
+          districtOrCounty: countyOrDistrict,
           totalVotes: result.totalNumberOfVotesInArea,
           results: [result]
         }
       } else {
-        props[result.district].results.push(result);
+        props[countyOrDistrict].results.push(result);
       }
     });
     return props;
   }
 
   handleFilter(event:any) {
-    this.setState({districtFilter:event.target.value});
+    this.setState({districtFilter:event.target.value, useCounty:this.state.useCounty});
   }
 
   handleSubmit(event:any) {
@@ -124,7 +129,7 @@ class Results extends React.Component<{results: Array<Result>}, { districtFilter
 
     return <div className={"row"}>
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor={"districtFilter"}>District Filter</label>
+        <label htmlFor={"districtFilter"}>{ this.state.useCounty ? "County" : "District" } Filter</label>
         <input type="string" placeholder="Comma separated list of districts" id="districtFilter" onChange={this.handleFilter} width={"100%"}/>
       </form>
       {resultsList}

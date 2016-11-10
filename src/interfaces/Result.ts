@@ -39,7 +39,7 @@ export function createResult(line:string) : Result {
 
 export interface Result {
     state?: string;
-    countyId?: number;
+    countyId?: string;
     precinctName?: string;
     officeId?: number;
     officeName?: string;
